@@ -4,31 +4,23 @@ import { AuthRegisterDTO } from './dto/auth-register.dto';
 import { AuthForgetDTO } from './dto/auth-forget.dto';
 import { AuthResetDTO } from './dto/auth-reset.dto';
 import { AuthService } from './auth.service';
-import { AuthGuard } from 'src/guards/auth.guard';
+import { AuthGuard } from 'src/auth/guards/auth.guard';
+import { IsPublic } from './decorators/is-public.decorator';
 // import { AuthGuard } from 'src/guards/auth.guard';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @IsPublic()
   @Post('login')
   async login(@Body() { email, password }: AuthLoginDTO) {
     return this.authService.login(email, password);
   }
 
-  @Post('register')
-  async register(@Body() body: AuthRegisterDTO) {
-    this.authService.register(body);
-  }
-
   @Post('forget')
   async forget(@Body() { email }: AuthForgetDTO) {
     return this.authService.forget(email);
-  }
-
-  @Post('reset')
-  async reset(@Body() { password, token }: AuthResetDTO) {
-    return this.authService.reset(password, token);
   }
 
   @UseGuards(AuthGuard)
