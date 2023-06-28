@@ -32,6 +32,11 @@
 $ npm install
 ```
 
+```bash
+$ npx prisma db push
+$ npx prisma generate
+```
+
 ## Running the app
 
 ```bash
