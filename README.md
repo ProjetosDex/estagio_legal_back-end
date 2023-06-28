@@ -31,7 +31,10 @@
 ```bash
 $ npm install
 ```
+## config prismaORM
+criar arquivo .env seguindo o padrao o arquivo .env.example
 
+realizando a criação do banco e atualização do prisma client
 ```bash
 $ npx prisma db push
 $ npx prisma generate
